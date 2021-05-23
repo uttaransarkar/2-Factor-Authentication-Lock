@@ -10,9 +10,11 @@
 # 5. map the predicted id to name of the user 
 # 6. Display the predictions on the screen - bounding box and name
 
+import os
+
 import cv2
-import numpy as np 
-import os 
+import numpy as np
+
 
 ########## KNN CODE ############
 def distance(v1, v2):
@@ -46,10 +48,10 @@ def knn(train, test, k=5):
 cap = cv2.VideoCapture(0)
 
 # Face Detection
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 skip = 0
-dataset_path = './data/'
+dataset_path = 'D:/2-Factor-Authentication-Lock/face_recog/data/'
 
 face_data = [] 
 labels = []

@@ -15,11 +15,11 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 
 # Face Detection
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
 skip = 0
 face_data = []
-dataset_path = './data/'
+dataset_path = 'D:/2-Factor-Authentication-Lock/face_recog/data/'
 file_name = input("Enter the name of the person : ")
 while True:
 	ret,frame = cap.read()
