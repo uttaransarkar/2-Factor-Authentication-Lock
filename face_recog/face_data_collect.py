@@ -15,12 +15,10 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 
 # Face Detection
-<<<<<<< HEAD
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-=======
+
 #face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
->>>>>>> e2cbf2ca8faf1280a9fc665c875b0f748c556220
 
 skip = 0
 face_data = []
