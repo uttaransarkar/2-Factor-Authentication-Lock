@@ -22,6 +22,10 @@ skip = 0
 face_data = []
 dataset_path = './data/'
 file_name = input("Enter the name of the person : ")
+print("Categories :- ")
+print("Master user -> 0")
+print("Known to Master -> 1")
+category=input("Enter category of the person (0 or 1) : ")
 counter=0;
 while True:
 	ret,frame = cap.read()
@@ -71,8 +75,8 @@ face_data = face_data.reshape((face_data.shape[0],-1))
 print(face_data.shape)
 
 # Save this data into file system
-np.save(dataset_path+file_name+'.npy',face_data)
-print("Data Successfully save at "+dataset_path+file_name+'.npy')
+np.save(dataset_path+file_name+' '+category+'.npy',face_data)
+print("Data Successfully save at "+dataset_path)
 
 cap.release()
 cv2.destroyAllWindows()

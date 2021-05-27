@@ -13,6 +13,13 @@
 import cv2
 import numpy as np 
 import os 
+import re
+import string
+
+user_dict={
+	"0":"Master User",
+	"1":"Known User"
+}
 
 ########## KNN CODE ############
 def distance(v1, v2):
@@ -106,7 +113,11 @@ while True:
 
 		#Display on the screen the name and rectangle around it
 		pred_name = names[int(out)]
-		cv2.putText(frame,pred_name,(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2,cv2.LINE_AA)
+		res = pred_name.split()
+		username=res[0]
+		usertype=user_dict[res[1]]
+		cv2.putText(frame,username,(x,y-10),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2,cv2.LINE_AA)
+		cv2.putText(frame,usertype,(x-30,y-40),cv2.FONT_HERSHEY_SIMPLEX,1,(255,0,0),2,cv2.LINE_AA)
 		cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
 
 	cv2.imshow("Faces",frame)
