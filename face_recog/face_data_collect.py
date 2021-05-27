@@ -22,6 +22,7 @@ skip = 0
 face_data = []
 dataset_path = './data/'
 file_name = input("Enter the name of the person : ")
+counter=0;
 while True:
 	ret,frame = cap.read()
 
@@ -55,6 +56,9 @@ while True:
 
 	cv2.imshow("Frame",frame)
 	cv2.imshow("Face Section",face_section)
+	counter=counter+1
+	if counter>=100:
+		break
 
 	key_pressed = cv2.waitKey(1) & 0xFF
 	if key_pressed == ord('q'):
