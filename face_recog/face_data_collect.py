@@ -57,6 +57,7 @@ while True:
 	cv2.imshow("Frame",frame)
 	cv2.imshow("Face Section",face_section)
 	counter=counter+1
+	## To record only 10 face instances
 	if counter>=100:
 		break
 
