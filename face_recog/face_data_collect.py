@@ -26,7 +26,7 @@ print("Categories :- ")
 print("Master user -> 0")
 print("Known to Master -> 1")
 category=input("Enter category of the person (0 or 1) : ")
-counter=0;
+counter=0
 while True:
 	ret,frame = cap.read()
 
