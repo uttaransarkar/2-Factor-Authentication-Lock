@@ -24,6 +24,10 @@ vs = VideoStream(src=0).start()
 time.sleep(2.0)
 total = 0
 
+# # Logic to register new users
+# name = input("Enter name : ")
+# os.path.isfile(path)
+
 # loop over the frames from the video stream
 while True:
 	# grab the frame from the threaded video stream, clone it, (just
