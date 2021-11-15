@@ -2,6 +2,8 @@ import cv2
 import time
 import os
 import HandTrackingModule as htm
+import winsound
+# import datetime
 
 wCam, hCam = 640, 480
 
@@ -25,8 +27,14 @@ pTime = 0
 detector = htm.handDetector(detectionCon=0.75)
 
 tipIds = [4, 8, 12, 16, 20]
-cnt = 0
+cnt = 0;
 passcode = []
+
+#Sound
+duration = 1750  # milliseconds
+freq = 300  # Hz
+
+# start = datetime.datetime.now()
 
 while True:
     # cnt += 1
@@ -34,7 +42,6 @@ while True:
     # img[0:200, 0:200] = overlayList[0]
     img = detector.findHands(img)
     lmList = detector.findPosition(img, draw=False)
-    # print(lmList)
 
     if len(lmList) != 0:
         # if lmList[8][2] < lmList[6][2]:
@@ -60,26 +67,26 @@ while True:
 
         # h, w, c = overlayList[totalFingers-1].shape
         # img[0:h, 0:w] = overlayList[totalFingers - 1]
+        
+        # curr = datetime.datetime.now()
+        if cnt % 20 == 0:
 
-        if cnt % 50 == 0:
-            cv2.rectangle(img, (20, 225), (170, 425), (0, 255, 0), cv2.FILLED)
-            cv2.putText(img, str(totalFingers), (45, 375), cv2.FONT_HERSHEY_PLAIN,
-                    10, (255, 0, 0), 25)
+            winsound.Beep(freq, duration)
+
+            # cv2.rectangle(img, (20, 225), (470, 425), (0, 255, 0), cv2.FILLED)
+            # cv2.putText(img, "NEXT", (45, 375), cv2.FONT_HERSHEY_PLAIN,
+            #         10, (255, 0, 0), 25)
             passcode.append(totalFingers)
             if len(passcode) == 6:
                 print(passcode)
                 break
-    # if the `q` key was pressed, break from the loop
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord("q"):
-        break
 
     cTime = time.time()
     fps = 1 / (cTime - pTime)
     pTime = cTime
 
-    cv2.putText(img, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN,
-                3, (255, 0, 0), 3)
+    # cv2.putText(img, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN,
+    #             3, (255, 0, 0), 3)
 
     cv2.imshow("Image", img)
     cv2.waitKey(1)
