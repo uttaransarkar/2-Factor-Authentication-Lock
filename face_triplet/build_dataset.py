@@ -14,18 +14,18 @@ ap.add_argument("-o", "--output", required=True,
 	help="path to output directory")
 args = vars(ap.parse_args())
 
-# load OpenCV's Haar cascade for face detection from disk
-detector = cv2.CascadeClassifier(args["cascade"])
-# initialize the video stream, allow the camera sensor to warm up,
-# and initialize the total number of example faces written to disk
-# thus far
-print("[INFO] starting video stream...")
-vs = VideoStream(src=0).start()
-# vs = VideoStream(usePiCamera=True).start()
-time.sleep(2.0)
-total = 0
 
 def add_user():
+	# load OpenCV's Haar cascade for face detection from disk
+	detector = cv2.CascadeClassifier(args["cascade"])
+	# initialize the video stream, allow the camera sensor to warm up,
+	# and initialize the total number of example faces written to disk
+	# thus far
+	print("[INFO] starting video stream...")
+	vs = VideoStream(src=0).start()
+	# vs = VideoStream(usePiCamera=True).start()
+	time.sleep(2.0)
+	total = 0
 	# Logic to register new users
 	name = input("Enter name : ")
 	category = input("Enter category : ")
@@ -37,24 +37,22 @@ def add_user():
 	print("Directory '% s' created" % name)
 
 	if os.path.isfile(path):
-		print("User exists. Try again.")
+		print("User already exists. Try again.")
 	else:
-		mappath = 'users_register'
+		mappath = './users_register.json'
 		if not os.path.isfile(mappath):
+			print('Creating mapping..')
 			data = {}
-			data['categories']
-			data['categories'].append({
-				name : category
-			})
-			with open('users_register.txt', 'w') as outfile:
+			data[name]=category
+			with open('users_register.json', 'w') as outfile:
 				json.dump(data, outfile)
 		else:
-			with open('users_register.txt', 'w') as outfile:
-				data['categories']
-				data['categories'].append({
-					name : category
-				})
-    			json.dump(data, outfile)
+			file = open("users_register.json","r")
+			data = json.load(file)
+			data.update({ name : category })
+			with open('users_register.json', 'w') as outfile:
+				json.dump(data, outfile)
+			
 		# loop over the frames from the video stream
 		while True:
 			# grab the frame from the threaded video stream, clone it, (just
@@ -78,7 +76,9 @@ def add_user():
 			# if the `k` key was pressed, write the *original* frame to disk
 			# so we can later process it and use it for face recognition
 			if key == ord("k"):
-				p = os.path.sep.join([args["output"], "{}.png".format(
+				# p = os.path.sep.join([args["output"], "{}.png".format(
+				# 	str(total).zfill(5))])
+				p = os.path.sep.join([path, "{}.png".format(
 					str(total).zfill(5))])
 				cv2.imwrite(p, orig)
 				total += 1
@@ -92,7 +92,7 @@ def add_user():
 		cv2.destroyAllWindows()
 		vs.stop()
 
-
+add_user()
 		
 
 

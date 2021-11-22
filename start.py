@@ -1,4 +1,5 @@
-from Hand_Gesture import handgesture
+import json
+# from Hand_Gesture import handgesture
 from face_triplet.recognize_video import facerecog
 
 
@@ -14,12 +15,15 @@ from face_triplet.recognize_video import facerecog
 '''
 def start():
     # Get User_Register Dictionary
-    data = {}
+    file = open("./face_triplet/users_register.json","r")
+    data = json.load(file)
+
     # Face Module
-    name=facerecog()
-    # user category determination
-    category=data['category'][name]
+    name,category=facerecog()
+
 
     # Hand Module
-    handgesture()
+    # handgesture()
     # Latch Circuit
+
+start()

@@ -8,6 +8,7 @@ import pickle
 import time
 import cv2
 import os
+import json
 
 def facerecog():
 	# construct the argument parser and parse the arguments
@@ -16,10 +17,10 @@ def facerecog():
 		help="minimum probability to filter weak detections")
 	args = vars(ap.parse_args())
 
-	detector = 'face_detection_model'
-	embedding_model = 'openface.nn4.small2.v1.t7'
-	recognizer = 'output/recognizer.pickle'
-	le = 'output/le.pickle'
+	detector = 'face_triplet/face_detection_model'
+	embedding_model = 'face_triplet/openface.nn4.small2.v1.t7'
+	recognizer = 'face_triplet/output/recognizer.pickle'
+	le = 'face_triplet/output/le.pickle'
 
 	# load serialized face detector from disk
 	print("[INFO] loading face detector...")
@@ -32,6 +33,10 @@ def facerecog():
 	# load the actual face recognition model along with the label encoder
 	recognizer = pickle.loads(open(recognizer, "rb").read())
 	le = pickle.loads(open(le, "rb").read())
+
+	# Load Mapping JSON
+	file = open("./face_triplet/users_register.json","r")
+	data = json.load(file)
 
 	# initialize the video stream, then allow the camera sensor to warm up
 	print("[INFO] starting video stream...")
@@ -87,9 +92,10 @@ def facerecog():
 				j = np.argmax(preds)
 				proba = preds[j]
 				name = le.classes_[j]
+				category = data[name]
 				# draw the bounding box of the face along with the
 				# associated probability
-				text = "{}: {:.2f}%".format(name, proba * 100)
+				text = "{} {} : {:.2f}%".format(name, category, proba * 100,)
 				y = startY - 10 if startY - 10 > 10 else startY + 10
 				cv2.rectangle(frame, (startX, startY), (endX, endY),
 					(0, 0, 255), 2)
@@ -111,7 +117,7 @@ def facerecog():
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
 	vs.stop()
-
+	return name,category
 
 # Command to run file -
 # python recognize_video.py --detector face_detection_model --embedding-model openface.nn4.small2.v1.t7 --recognizer output/recognizer.pickle --le output/le.pickle
