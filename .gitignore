@@ -2,4 +2,9 @@ capstone/
 .vscode/
 .vs/
 capstoneenv/
-capstone_gesture_control/__pycache__/*.pyc
+capstone_gesture_control/__pycache__/
+face_triplet/__pycache__/
+__pycache__/
+*.py[cod]
+*.pyc
+*.cpython-39.pyc
