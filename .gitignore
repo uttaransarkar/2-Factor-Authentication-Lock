@@ -2,3 +2,4 @@ capstone/
 .vscode/
 .vs/
 capstoneenv/
+capstone_gesture_control/__pycache__/*.pyc

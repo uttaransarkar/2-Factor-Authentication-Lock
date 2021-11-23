@@ -36,8 +36,8 @@ def handgesture():
     text_speech = pyttsx3.init()
 
     #Sound
-    duration = 1750  # milliseconds
-    freq = 300  # Hz
+    # duration = 1750  # milliseconds
+    # freq = 300  # Hz
 
     # start = datetime.datetime.now()
 
