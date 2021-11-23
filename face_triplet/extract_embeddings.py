@@ -8,7 +8,7 @@ import os
 
 dataset = 'face_triplet/dataset'
 embeddings = 'face_triplet/output/embeddings.pickle'
-detector = 'face_triplet/face_detection_model'
+detectorPath = 'face_triplet/face_detection_model'
 embeddingmodel = 'face_triplet/openface.nn4.small2.v1.t7'
 probconfidence=0.5
 
@@ -30,8 +30,8 @@ probconfidence=0.5
 def extract_embeddings():
 	# load our serialized face detector from disk
 	print("[INFO] loading face detector...")
-	protoPath = os.path.sep.join([detector, "deploy.prototxt"])
-	modelPath = os.path.sep.join([detector, "res10_300x300_ssd_iter_140000.caffemodel"])
+	protoPath = os.path.sep.join([detectorPath, "deploy.prototxt"])
+	modelPath = os.path.sep.join([detectorPath, "res10_300x300_ssd_iter_140000.caffemodel"])
 
 	# protoPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
 	# modelPath = os.path.sep.join([args["detector"], "res10_300x300_ssd_iter_140000.caffemodel"])

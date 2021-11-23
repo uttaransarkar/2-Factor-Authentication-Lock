@@ -1,9 +1,6 @@
 import json
 # from Hand_Gesture import handgesture
 from face_triplet.recognize_video import *
-from face_triplet.build_dataset import *
-from face_triplet.extract_embeddings import *
-from face_triplet.train_model import *
 
 
 '''
@@ -17,7 +14,7 @@ from face_triplet.train_model import *
 '''
 def start():
     # Get User_Register Dictionary
-    file = open("./face_triplet/users_register.json","r")
+    file = open("./users_register.json","r")
     data = json.load(file)
 
     # Face Module
@@ -51,16 +48,5 @@ def start():
     else:
         # Text to Speech Code Run "Unknown"
         print("Unknown User")
-
-def add_user():
-    # Build Data, Take Input
-    build_data()
-
-    # Extract Embeddings
-    extract_embeddings()
-
-    # Retrain Model
-    retrain_model()
-
 
 start()
