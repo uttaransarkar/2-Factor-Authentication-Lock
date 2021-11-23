@@ -46,7 +46,7 @@ def retrain_model():
 	f.write(pickle.dumps(label_encoder))
 	f.close()
 
-retrain_model()
+# retrain_model()
 
 # Command to run:-
 # python train_model.py --embeddings output/embeddings.pickle --recognizer output/recognizer.pickle --le output/le.pickle

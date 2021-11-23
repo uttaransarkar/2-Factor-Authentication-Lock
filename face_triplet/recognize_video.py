@@ -35,8 +35,8 @@ def facerecog():
 	le = pickle.loads(open(le, "rb").read())
 
 	# Load Mapping JSON
-	file = open("./face_triplet/users_register.json","r")
-	data = json.load(file)
+	file = open("./users_register.json","r")
+	data = json.load(file) 
 
 	# initialize the video stream, then allow the camera sensor to warm up
 	print("[INFO] starting video stream...")

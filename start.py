@@ -3,9 +3,6 @@ import pyttsx3
 from capstone_gesture_control import *
 from capstone_gesture_control.capstone_hand_ges import handgesture
 from face_triplet.recognize_video import *
-from face_triplet.build_dataset import *
-from face_triplet.extract_embeddings import *
-from face_triplet.train_model import *
 
 '''
     facerecog()
@@ -21,8 +18,8 @@ text_speech = pyttsx3.init()
 
 def start():
     # Get User_Register Dictionary
-    file = open("./face_triplet/users_register.json","r")
-    data = json.load(file)
+    # file = open("./users_register.json","r")
+    # data = json.load(file)
 
     # Face Module
     name,category=facerecog()
