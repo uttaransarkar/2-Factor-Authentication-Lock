@@ -32,7 +32,7 @@ def build_data():
 	name = input("Enter name : ")
 	category = input("Enter category : ")
 	# Parent Directory path
-	parent_dir = "./dataset/"
+	parent_dir = "face_triplet/dataset/"
 	# Path
 	path = os.path.join(parent_dir, name)
 	os.mkdir(path)

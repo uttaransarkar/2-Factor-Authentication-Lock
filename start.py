@@ -58,9 +58,13 @@ def add_user():
 
     # Extract Embeddings
     extract_embeddings()
+    
+    print(len(next(os.walk('dir_name'))[1]))
+    if len(next(os.walk('dir_name'))[1])>1:
+        retrain_model()
 
     # Retrain Model
-    retrain_model()
+    
 
-
-start()
+# start()
+add_user()
