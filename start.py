@@ -18,8 +18,8 @@ text_speech = pyttsx3.init()
 
 def start():
     # Get User_Register Dictionary
-    file = open("./users_register.json","r")
-    data = json.load(file)
+    # file = open("./users_register.json","r")
+    # data = json.load(file)
 
     # Face Module
     name,category=facerecog()

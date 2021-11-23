@@ -1,7 +1,7 @@
 import cv2
 import time
 import os
-import HandTrackingModule as htm
+from . import HandTrackingModule as htm
 import winsound
 # import datetime
 
