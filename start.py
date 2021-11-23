@@ -1,10 +1,11 @@
 import json
-# from Hand_Gesture import handgesture
+import pyttsx3
+from capstone_gesture_control import *
+from capstone_gesture_control.capstone_hand_ges import handgesture
 from face_triplet.recognize_video import *
 from face_triplet.build_dataset import *
 from face_triplet.extract_embeddings import *
 from face_triplet.train_model import *
-
 
 '''
     facerecog()
@@ -15,6 +16,9 @@ from face_triplet.train_model import *
         input : 
         output : list
 '''
+password = [0,1,2,3,4,5]
+text_speech = pyttsx3.init()
+
 def start():
     # Get User_Register Dictionary
     file = open("./face_triplet/users_register.json","r")
@@ -32,8 +36,9 @@ def start():
         while attempts<=3:
             # Hand Gesture Code Run - return sequence
 
+            ans = handgesture()
             # Match Password
-            match = True
+            match = ans == password
             ## 
             if match:
                 # Latch Activate
@@ -48,6 +53,8 @@ def start():
     elif category.lower()=='known':
         # Text to Speech Code Run
         print("User Name : ",name)
+        text_speech.say(name)
+        text_speech.runAndWait()
     else:
         # Text to Speech Code Run "Unknown"
         print("Unknown User")

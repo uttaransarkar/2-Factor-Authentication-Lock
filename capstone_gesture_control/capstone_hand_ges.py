@@ -80,7 +80,8 @@ def handgesture():
                 passcode.append(totalFingers)
                 if len(passcode) == 6:
                     print(passcode)
-                    break
+
+                    return passcode
 
         cTime = time.time()
         fps = 1 / (cTime - pTime)
