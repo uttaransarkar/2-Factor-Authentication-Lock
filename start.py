@@ -59,19 +59,4 @@ def start():
         # Text to Speech Code Run "Unknown"
         print("Unknown User")
 
-def add_user():
-    # Build Data, Take Input
-    build_data()
-
-    # Extract Embeddings
-    extract_embeddings()
-    
-    print(len(next(os.walk('dir_name'))[1]))
-    if len(next(os.walk('dir_name'))[1])>1:
-        retrain_model()
-
-    # Retrain Model
-    
-
-# start()
-add_user()
+start()
