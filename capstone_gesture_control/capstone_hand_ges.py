@@ -3,6 +3,8 @@ import time
 import os
 from . import HandTrackingModule as htm
 import winsound
+import pyttsx3
+
 # import datetime
 
 def handgesture():
@@ -30,6 +32,8 @@ def handgesture():
     tipIds = [4, 8, 12, 16, 20]
     cnt = 0;
     passcode = []
+
+    text_speech = pyttsx3.init()
 
     #Sound
     duration = 1750  # milliseconds
@@ -70,9 +74,11 @@ def handgesture():
             # img[0:h, 0:w] = overlayList[totalFingers - 1]
             
             # curr = datetime.datetime.now()
-            if cnt % 20 == 0:
+            if cnt % 50 == 0:
 
-                winsound.Beep(freq, duration)
+                # winsound.Beep(freq, duration)
+                text_speech.say("Next")
+                text_speech.runAndWait()
 
                 # cv2.rectangle(img, (20, 225), (470, 425), (0, 255, 0), cv2.FILLED)
                 # cv2.putText(img, "NEXT", (45, 375), cv2.FONT_HERSHEY_PLAIN,
