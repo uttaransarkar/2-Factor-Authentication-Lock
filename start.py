@@ -1,7 +1,9 @@
 import json
 # from Hand_Gesture import handgesture
-from face_triplet.recognize_video import facerecog
-
+from face_triplet.recognize_video import *
+from face_triplet.build_dataset import *
+from face_triplet.extract_embeddings import *
+from face_triplet.train_model import *
 
 
 '''
@@ -20,10 +22,45 @@ def start():
 
     # Face Module
     name,category=facerecog()
+    print(name,category)
 
+    # Categorization Logic
+    if category.lower()=='master':
+        # Matching password
+        attempts = 1
+        match = False
+        while attempts<=3:
+            # Hand Gesture Code Run - return sequence
 
-    # Hand Module
-    # handgesture()
-    # Latch Circuit
+            # Match Password
+            match = True
+            ## 
+            if match:
+                # Latch Activate
+                print("Access Granted.")
+                break
+            else:
+                print("Wrong password. Try again")
+                attempts+=1
+
+        
+        print("User Name : ",name)
+    elif category.lower()=='known':
+        # Text to Speech Code Run
+        print("User Name : ",name)
+    else:
+        # Text to Speech Code Run "Unknown"
+        print("Unknown User")
+
+def add_user():
+    # Build Data, Take Input
+    build_data()
+
+    # Extract Embeddings
+    extract_embeddings()
+
+    # Retrain Model
+    retrain_model()
+
 
 start()

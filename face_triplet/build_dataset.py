@@ -6,18 +6,20 @@ import cv2
 import os
 import json
 
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-c", "--cascade", required=True,
-	help = "path to where the face cascade resides")
-ap.add_argument("-o", "--output", required=True,
-	help="path to output directory")
-args = vars(ap.parse_args())
+# # construct the argument parser and parse the arguments
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-c", "--cascade", required=True,
+# 	help = "path to where the face cascade resides")
+# ap.add_argument("-o", "--output", required=True,
+# 	help="path to output directory")
+# args = vars(ap.parse_args())
 
+cascade = 'face_triplet/haarcascade_frontalface_alt.xml'
 
-def add_user():
+def build_data():
 	# load OpenCV's Haar cascade for face detection from disk
-	detector = cv2.CascadeClassifier(args["cascade"])
+	# detector = cv2.CascadeClassifier(args["cascade"])
+	detector = cv2.CascadeClassifier(cascade)
 	# initialize the video stream, allow the camera sensor to warm up,
 	# and initialize the total number of example faces written to disk
 	# thus far
@@ -91,8 +93,3 @@ def add_user():
 		print("[INFO] cleaning up...")
 		cv2.destroyAllWindows()
 		vs.stop()
-
-add_user()
-		
-
-
