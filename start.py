@@ -27,12 +27,13 @@ def start():
 
     # Categorization Logic
     if category.lower()=='master':
-        text_speech.say("Please enter passcode")
-        text_speech.runAndWait()
+        
         # Matching password
         attempts = 1
         match = False
         while attempts<=3:
+            text_speech.say("Please enter passcode")
+            text_speech.runAndWait()
             # Hand Gesture Code Run - return sequence
 
             ans = handgesture()

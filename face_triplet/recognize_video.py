@@ -44,6 +44,10 @@ def facerecog():
 	time.sleep(2.0)
 	# start the FPS throughput estimator
 	fps = FPS().start()
+
+	#time in which face is recognised
+	timeout = time.time() + 15
+
 	# loop over frames from the video file stream
 	while True:
 		# grab the frame from the threaded video stream
@@ -108,7 +112,7 @@ def facerecog():
 		cv2.imshow("Frame", frame)
 		key = cv2.waitKey(1) & 0xFF
 		# if the `q` key was pressed, break from the loop
-		if key == ord("q"):
+		if key == ord("q") or time.time()>timeout:
 			break
 	# stop the timer and display FPS information
 	fps.stop()

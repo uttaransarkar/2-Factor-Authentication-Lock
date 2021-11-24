@@ -1,18 +1,26 @@
 import cv2
 import time
 import os
+from imutils.video import VideoStream
+from imutils.video import FPS
 from . import HandTrackingModule as htm
 import winsound
+import imutils
 import pyttsx3
 
 # import datetime
 
 def handgesture():
-    wCam, hCam = 640, 480
+    # wCam, hCam = 640, 480
 
-    cap = cv2.VideoCapture(0)
-    cap.set(3, wCam)
-    cap.set(4, hCam)
+    # cap = cv2.VideoCapture(0)
+    # cap.set(3, wCam)
+    # cap.set(4, hCam)
+    #VIDEOSTREAM
+    vs = VideoStream(src=0).start()
+    fps = FPS().start()
+    time.sleep(2)
+
 
     # folderPath = "FingerImages"
     # myList = os.listdir(folderPath)
@@ -43,17 +51,20 @@ def handgesture():
 
     while True:
         # cnt += 1
-        success, img = cap.read()
+        # success, img = cap.read()
+        frame = vs.read()
+        frame = imutils.resize(frame, width=600)
+        
         # img[0:200, 0:200] = overlayList[0]
-        img = detector.findHands(img)
-        lmList = detector.findPosition(img, draw=False)
+        frame = detector.findHands(frame)
+        lmList = detector.findPosition(frame, draw=False)
 
         if len(lmList) != 0:
             # if lmList[8][2] < lmList[6][2]:
             #     print('Index finger open')
             fingers = []
 
-            # For thumb
+            # For thumb``
             if lmList[tipIds[0]][1] > lmList[tipIds[0] - 1][1]:
                 fingers.append(1)
             else:
@@ -74,11 +85,12 @@ def handgesture():
             # img[0:h, 0:w] = overlayList[totalFingers - 1]
             
             # curr = datetime.datetime.now()
-            if cnt % 50 == 0:
+            if cnt % 30 == 0:
 
                 # winsound.Beep(freq, duration)
-                text_speech.say("Next")
-                text_speech.runAndWait()
+                if len(passcode) < 5 :
+                    text_speech.say("Next")
+                    text_speech.runAndWait()
 
                 # cv2.rectangle(img, (20, 225), (470, 425), (0, 255, 0), cv2.FILLED)
                 # cv2.putText(img, "NEXT", (45, 375), cv2.FONT_HERSHEY_PLAIN,
@@ -89,13 +101,13 @@ def handgesture():
 
                     return passcode
 
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
+        # cTime = time.time()
+        # fps = 1 / (cTime - pTime)
+        # pTime = cTime
 
         # cv2.putText(img, f'FPS: {int(fps)}', (400, 70), cv2.FONT_HERSHEY_PLAIN,
         #             3, (255, 0, 0), 3)
 
-        cv2.imshow("Image", img)
+        cv2.imshow("Image", frame)
         cv2.waitKey(1)
         cnt += 1
