@@ -1,1 +1,0 @@
-Install Open cv in a virtual env
