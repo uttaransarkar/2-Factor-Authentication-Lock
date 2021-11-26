@@ -17,6 +17,7 @@ password = [0,1,2,3,4,5]
 text_speech = pyttsx3.init()
 
 def start():
+    access=False
     # Get User_Register Dictionary
     # file = open("./users_register.json","r")
     # data = json.load(file)
@@ -27,7 +28,6 @@ def start():
 
     # Categorization Logic
     if category.lower()=='master':
-        
         # Matching password
         attempts = 1
         match = False
@@ -35,21 +35,17 @@ def start():
             text_speech.say("Please enter passcode")
             text_speech.runAndWait()
             # Hand Gesture Code Run - return sequence
-
             ans = handgesture()
             # Match Password
             match = ans == password
-            ## 
             if match:
                 # Latch Activate
                 print("Access Granted.")
+                access=True
                 break
             else:
                 print("Wrong password. Try again")
                 attempts+=1
-
-        
-        print("User Name : ",name)
     elif category.lower()=='known':
         # Text to Speech Code Run
         print("User Name : ",name)
@@ -58,5 +54,6 @@ def start():
     else:
         # Text to Speech Code Run "Unknown"
         print("Unknown User")
+    return access
 
-start()
+# start()
