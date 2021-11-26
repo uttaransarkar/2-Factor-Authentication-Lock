@@ -10,6 +10,20 @@ import cv2
 import os
 import json
 
+def majority(names):
+	freq = {}
+	for name in names:
+		if name in freq:
+				freq[name] += 1
+		else:
+			freq[name] = 1
+	maxvalue = 0
+	for key, value in freq.items():
+		if value>maxvalue:
+			maxvalue = value
+			majorityname = key
+	return majorityname
+
 def facerecog():
 	# construct the argument parser and parse the arguments
 	ap = argparse.ArgumentParser()
@@ -66,6 +80,7 @@ def facerecog():
 		detector.setInput(imageBlob)
 		detections = detector.forward()
 
+		names=[]
 		# loop over the detections
 		for i in range(0, detections.shape[2]):
 			# extract the confidence (i.e., probability) associated with
@@ -97,6 +112,7 @@ def facerecog():
 				proba = preds[j]
 				name = le.classes_[j]
 				category = data[name]
+				names.append(name)
 				# draw the bounding box of the face along with the
 				# associated probability
 				text = "{} {} : {:.2f}%".format(name, category, proba * 100,)
@@ -121,7 +137,9 @@ def facerecog():
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
 	vs.stop()
-	return name,category
+	finalname = majority(names)
+	print("Final Name : ",finalname)
+	return finalname,data[finalname]
 
 # Command to run file -
 # python recognize_video.py --detector face_detection_model --embedding-model openface.nn4.small2.v1.t7 --recognizer output/recognizer.pickle --le output/le.pickle
