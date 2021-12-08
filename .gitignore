@@ -8,3 +8,4 @@ __pycache__/
 *.py[cod]
 *.pyc
 *.cpython-39.pyc
+app/reactapp/node_modules
