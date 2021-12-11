@@ -25,6 +25,8 @@ def start():
     # Face Module
     name,category=facerecog()
     print(name,category)
+    text_speech.say("{} has arrived".format(name))
+    text_speech.runAndWait()
 
     # Categorization Logic
     if category.lower()=='master':
@@ -41,6 +43,8 @@ def start():
             if match:
                 # Latch Activate
                 print("Access Granted.")
+                text_speech.say("Access Granted")
+                text_speech.runAndWait()
                 access=True
                 break
             else:

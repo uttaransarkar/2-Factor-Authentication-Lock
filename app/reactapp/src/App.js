@@ -1,11 +1,11 @@
 import './App.css';
+// import CameraInput from './components/camera-input';
+import MyLayout from './components/layout';
+import 'antd/dist/antd.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
+      <MyLayout/>
   );
 }
 

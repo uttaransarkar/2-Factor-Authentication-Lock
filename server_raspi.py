@@ -4,13 +4,13 @@ import RPi.GPIO as GPIO
 import time
 
 latchPin = 3
-proxPin = 5
+proxPin = 11
 buzzerPin = 7
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(latchPin, GPIO.OUT)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.setup(proxPin, GPIO.IN)
-ip = "192.168.1.10" # IP of Raspberry Pi
+ip = "192.168.1.8" # IP of Raspberry Pi
 
 # start server
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
