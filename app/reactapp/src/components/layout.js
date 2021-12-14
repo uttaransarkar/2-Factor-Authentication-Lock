@@ -1,5 +1,6 @@
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
+import MyStats from './MyStats'
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -10,11 +11,7 @@ function MyLayout(){
             <Layout>
                 <Header className="header">
                 <div className="logo" />
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-                    <Menu.Item key="1">nav 1</Menu.Item>
-                    <Menu.Item key="2">nav 2</Menu.Item>
-                    <Menu.Item key="3">nav 3</Menu.Item>
-                </Menu>
+                    <h1 style={{ color: 'white' }}>2 Factor Authentication Lock</h1>
                 </Header>
                 <Layout>
                 <Sider width={200} className="site-layout-background">
@@ -24,23 +21,15 @@ function MyLayout(){
                     defaultOpenKeys={['sub1']}
                     style={{ height: '100%', borderRight: 0 }}
                     >
-                    <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-                        <Menu.Item key="1">option1</Menu.Item>
-                        <Menu.Item key="2">option2</Menu.Item>
-                        <Menu.Item key="3">option3</Menu.Item>
-                        <Menu.Item key="4">option4</Menu.Item>
+                    <SubMenu key="sub1" icon={<UserOutlined />} title="Face Auth">
+                        <Menu.Item key="1">Add User</Menu.Item>
+                        <Menu.Item key="2">Update User</Menu.Item>
+                        <Menu.Item key="3">Delete User</Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
-                        <Menu.Item key="5">option5</Menu.Item>
-                        <Menu.Item key="6">option6</Menu.Item>
-                        <Menu.Item key="7">option7</Menu.Item>
-                        <Menu.Item key="8">option8</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-                        <Menu.Item key="9">option9</Menu.Item>
-                        <Menu.Item key="10">option10</Menu.Item>
-                        <Menu.Item key="11">option11</Menu.Item>
-                        <Menu.Item key="12">option12</Menu.Item>
+                    <SubMenu key="sub2" icon={<LaptopOutlined />} title="Password">
+                        <Menu.Item key="5">Set Password</Menu.Item>
+                        <Menu.Item key="6">Change Password</Menu.Item>
+                        <Menu.Item key="7">Forgot Password</Menu.Item>
                     </SubMenu>
                     </Menu>
                 </Sider>
@@ -58,7 +47,7 @@ function MyLayout(){
                         minHeight: 280,
                     }}
                     >
-                    Content
+                        <MyStats/>
                     </Content>
                 </Layout>
                 </Layout>
