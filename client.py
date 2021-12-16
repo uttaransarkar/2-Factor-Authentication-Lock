@@ -1,7 +1,7 @@
 import socket
 from start import *
 
-ip = "192.168.1.9" # IP of Raspberry Pi
+ip = "192.168.1.7" # IP of Raspberry Pi
 
 # connect to server
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

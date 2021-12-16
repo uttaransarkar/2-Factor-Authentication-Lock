@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(latchPin, GPIO.OUT)
 GPIO.setup(buzzerPin, GPIO.OUT)
 GPIO.setup(proxPin, GPIO.IN)
-ip = "192.168.1.8" # IP of Raspberry Pi
+ip = "192.168.1.7" # IP of Raspberry Pi
 
 # start server
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -27,12 +27,15 @@ while True:
     
 GPIO.output(buzzerPin,GPIO.LOW)
 
+GPIO.output(latchPin, GPIO.LOW)
+
 while True:
     # establish connection
     conn, addr = serv.accept()
     from_client = ''
     print("SERVER: connection to Client established")
     # latch = Latch()
+    
     while True:
         # receive data and print
         print("Start")

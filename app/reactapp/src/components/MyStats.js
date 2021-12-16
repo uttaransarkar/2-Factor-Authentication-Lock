@@ -12,7 +12,13 @@ function MyStats(){
                 <Statistic title="Users" value={5} />
                 </Col>
                 <Col span={12}>
-                <Statistic title="Account Balance (CNY)" value={112893} precision={2} />
+                <div>
+                    <Button type="primary">Master</Button>
+                    <br />
+                    <br />
+                    <Button type="primary">Known</Button>
+                    <br />
+                </div>
                 <Button style={{ marginTop: 16 }} type="primary">
                     Configure
                 </Button>

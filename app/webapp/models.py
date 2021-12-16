@@ -14,4 +14,7 @@ class UserRegister(models.Model):
 
 class UserImages(models.Model):
     name = models.ForeignKey(UserRegister, on_delete=models.CASCADE)
-    imagelinklist = models.ImageField()
+    image = models.ImageField(upload_to ='uploads/')
+
+    def __str__(self):
+	    return self.name+'_'+self.image
